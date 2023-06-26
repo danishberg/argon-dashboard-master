@@ -33,6 +33,72 @@
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.js"></script>
+
+  <script>
+    var randomScalingFactor = function() {
+      return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
+  };
+  var randomColorFactor = function() {
+      return Math.round(Math.random() * 255);
+  };
+
+  var barChartData = {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [{
+          label: 'Dataset 1',
+          backgroundColor: "rgba(151,187,205,0.5)",
+          data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+          borderColor: 'white',
+          borderWidth: 2
+      }, {
+          label: 'Dataset 2',
+          backgroundColor: "rgba(151,187,205,0.5)",
+          data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+          borderColor: 'white',
+          borderWidth: 2
+      }, {
+          type: 'line',
+          label: 'Dataset 3',
+          backgroundColor: "rgba(220,220,220,0.5)",
+          data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+      }, ]
+
+  };
+var myBar = null;
+  window.onload = function() {
+      var ctx = document.getElementById("canvas").getContext("2d");
+      myBar = new Chart(ctx, {
+          type: 'bar',
+          data: barChartData,
+          options: {
+              responsive: true,
+          }
+      });
+  };
+
+  $('#randomizeData').click(function() {
+      $.each(barChartData.datasets, function(i, dataset) {
+          dataset.backgroundColor = 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
+          dataset.data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
+
+      });
+      myBar.update();
+  });
+  </script>
+  <style>
+    .graph-container {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+
+
 </head>
 
 
@@ -63,34 +129,11 @@
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1" style="color: white">Schedule</span>
+            <span class="nav-link-text ms-1" style="color: white">BENO Walk & <br> Meeting Schedule</span>
           </a>
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1" style="color: white">Ranking</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/myteam.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-app text-info text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1" style="color: white">My Team</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1" style="color: white">Safety Box</span>
-          </a>
-        </li>
+      
 
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6" style="color: white">Account pages</h6>
@@ -187,22 +230,20 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <a href="../pages/dashboard.html"><p class="text-sm mb-0 text-uppercase font-weight-bold">AA</p></a>
+                    <a href="../pages/dashboard.html"><p class="text-sm mb-0 text-uppercase font-weight-bold">Number of walk this week</p></a>
+                  
                     
                     <h5 class="font-weight-bolder">
-                      115
+                      115 miles
                     </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+10%</span>
-                      since yesterday
-                    </p>
-
+                  
+                    <a href="../pages/dashboard.html"><p class="text-sm mb-0 text-uppercase font-weight-bold">Number of walk last week</p></a>
                     <h5 class="font-weight-bolder">
-                        125
+                        125 miles
                       </h5>
                       <p class="mb-0">
                         <span class="text-success text-sm font-weight-bolder">+15%</span>
-                        since yesterday
+                        since last week
                       </p>
                   </div>
                 </div>
@@ -287,7 +328,7 @@
         <div class="col-lg-7 mb-lg-0 mb-4">
             <div class="card z-index-2 h-100">
               <div class="card-header pb-0 pt-3 bg-transparent">
-                <a href="../pages/map.html"><h6 class="text-capitalize">Map</h6></a>
+                <a href="../pages/map.html"><h6 class="text-capitalize">Statistics</h6></a>
                 <p class="text-sm mb-0">
                   <i class="fa fa-location-arrow text-success"></i>
                   <span class="font-weight-bold">Last Updated</span> in 2023
@@ -296,118 +337,155 @@
                
               </div>
               <div class="card-body p-3">
-                <div class="card card-carousel overflow-hidden h-100 p-0 card z-index-5 h-100 mb-6">
-                  <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
-                    <div class="carousel-inner border-radius-lg h-100">
-                      <div class="carousel-item h-100 active mb-12" style="background-image: url('../assets/img/SK01.jpg');
-                            background-size: cover;">
-                        <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                          <div class=" text-center border-radius-md mb-3">
-                          
-                          </div>
-                        </div>
-                      </div>
-      
                 
-                      <div class="carousel-item h-100 mb-12" style="background-image: url('../assets/img/SK001.jpg');
-                          background-size: cover;">
-                        <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                          <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                         
-                          </div>
-                          
-                        </div>
-                      </div>
-      
-                      
-                    </div>
-      
-                    <button class="carousel-control-prev w-5 me-4" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev" style="background-color: gray;">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <br>
-                    <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next" style="background-color: gray;">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                    
-                  </div>
-                </div>
+
+                <div style="width: 100%">
+                  <canvas id="canvas" height="450" width="600"></canvas>
+              </div>
+
+              <br>
+
+              <button id="randomizeData">Data Update</button>
+
+              <br>
+              
+              </div>
 
               
             </div>
           </div>
-        </div>
+        
 
 
       
-
-
-        <div class="col-lg-5 ">
+          <div class="col-lg-5">
             <div class="card card-carousel overflow-hidden h-100 p-0">
               <div class="card-body p-3">
                 <div class="row">
-                  <div class="col-8">
+                  <div class="col-12">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Recommendation & Action and Follow-up</p>
-
                       <br>
-
-                      <h6 class="mb-0 font-weight-bolder">Action</h6>
-
-                        <div class="form-check form-switch ps-0 ms-auto my-auto s">
-
-                            <p>Description</p>
-                            
-                            <input class="form-check-input mt-1 ms-auto" style="margin-bottom:7%;" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
-
+                      <div class="task-item">
+                        <div class="row">
+                          <div class="col-8">
+                            <div class="task-description">Task 1 description</div>
+                          </div>
+                          <div class="col-4">
+                            <button class="btn btn-success mark-completed">Mark Completed</button>
+                          </div>
                         </div>
-                        
-
-                        <h6 class="mb-0 font-weight-bolder">Action</h6>
-
-                        <div class="form-check form-switch ps-0 ms-auto my-auto s">
-
-                            <p>Description</p>
-                            
-                            <input class="form-check-input mt-1 ms-auto" style="margin-bottom:7%;" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
-
+                      </div>
+                      <div class="task-item">
+                        <div class="row">
+                          <div class="col-8">
+                            <div class="task-description">Task 2 description</div>
+                          </div>
+                          <div class="col-4">
+                            <button class="btn btn-success mark-completed">Mark Completed</button>
+                          </div>
                         </div>
-
-
-                        <h6 class="mb-0 font-weight-bolder">Action</h6>
-
-                        <div class="form-check form-switch ps-0 ms-auto my-auto s">
-
-                            <p>Description</p>
-                            
-                            <input class="form-check-input mt-1 ms-auto" style="margin-bottom:7%;" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
-
+                      </div>
+                      <div class="task-item">
+                        <div class="row">
+                          <div class="col-8">
+                            <div class="task-description">Task 3 description</div>
+                          </div>
+                          <div class="col-4">
+                            <button class="btn btn-success mark-completed">Mark Completed</button>
+                          </div>
                         </div>
-                        
-                        <h6 class="mb-0 font-weight-bolder">Action</h6>
-
-                        <div class="form-check form-switch ps-0 ms-auto my-auto s">
-
-                            <p>Description</p>
-                            
-                            <input class="form-check-input mt-1 ms-auto" style="margin-bottom:7%;" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
-
-                        </div>
-    
-                        
-                    </div>
-                  </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-info shadow-success text-center rounded-circle">
-                      <i class="ni ni-air-baloon text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          
+
+       
+
+                      <style>
+                        .task-item {
+                          position: relative;
+                          margin-bottom: 10px;
+                        }
+                        
+                        .task-item.completed {
+                          opacity: 0;
+                          height: 0;
+                          margin: 0;
+                          padding: 0;
+                        }
+                        
+                        .task-item.completed .task-description,
+                        .task-item.completed .mark-completed,
+                        .task-item.completed .completed-message {
+                          display: none;
+                        }
+                        
+                        .completed-message {
+                          position: absolute;
+                          top: 50%;
+                          left: 50%;
+                          transform: translate(-50%, -50%);
+                          opacity: 0;
+                          transition: opacity 0.5s ease-in-out;
+                        }
+                        
+                        .task-item.completed .completed-message {
+                          opacity: 1;
+                        }
+                        
+                        /* Added style for buttons */
+                        
+                      </style>
+                      
+                    
+                      
+                      <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                          var markCompletedButtons = document.querySelectorAll('.mark-completed');
+                          
+                          markCompletedButtons.forEach(function (button) {
+                            button.addEventListener('click', function () {
+                              var taskItem = this.closest('.task-item');
+                              var completedMessage = taskItem.querySelector('.completed-message');
+                              var taskList = taskItem.parentElement;
+                              
+                              taskItem.classList.add('completed');
+                              
+                              setTimeout(function () {
+                                taskItem.remove();
+                                rearrangeTaskItems(taskList);
+                              }, 2000);
+                            });
+                          });
+                          
+                          function rearrangeTaskItems(taskList) {
+                            var taskItems = taskList.querySelectorAll('.task-item');
+                            var offsetHeight = 0;
+                            
+                            taskItems.forEach(function (taskItem) {
+                              if (!taskItem.classList.contains('completed')) {
+                                taskItem.style.transform = 'translateY(-' + offsetHeight + 'px)';
+                                offsetHeight += taskItem.offsetHeight + 10;
+                              }
+                            });
+                          }
+                        });
+                      </script>
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+
+                        
+    
       
 
          
