@@ -177,7 +177,7 @@
                       <select class="selectMenu" id="eventType" name="eventType" onchange="displayCol()" required>
                       <option value="">Select One</option>
                       <option value="Event">Event</option>
-                      <option value="Leisure">Leisure</option>
+                      <option value="Leisure">Reminder</option>
                       <option value="Family Time">Family Time</option>
                       </select>
                       <div id="eventColor"></div>
@@ -197,6 +197,35 @@
           </div>
         </div>
 
+        <!-- Script for event addition - ENABLED
+
+          function toggleForm() {
+                var x = document.getElementById("formDiv");
+                var y = document.getElementsByClassName("addBTN")[0];
+                if (x.style.display == "none") {
+                  x.style.display = "block";
+                  y.style.transform = "rotate(45deg)";
+                } else {
+                  x.style.display = "none";
+                  y.style.transform = "rotate(90deg)";
+                }
+              }
+
+              Script for event addition - DISABLED
+
+          function toggleForm() {
+            var x = document.getElementById("formDiv");
+            var y = document.getElementsByClassName("addBTN")[0];
+            if (x.style.display == "none") {
+              x.style.display = "block";
+              y.style.transform = "rotate(45deg)";
+              y.style.pointerEvents = "auto"; // Enable pointer events on addBtn
+            } else {
+              x.style.display = "none";
+              y.style.transform = "rotate(90deg)";
+              y.style.pointerEvents = "none"; // Disable pointer events on addBtn
+            }
+          }-->
         <!----------------------------------------------Script Part Start---------------------------------------------->
             <script>
 
@@ -215,9 +244,11 @@
                 if (x.style.display == "none") {
                   x.style.display = "block";
                   y.style.transform = "rotate(45deg)";
+                  y.style.pointerEvents = "auto"; // Enable pointer events on addBtn
                 } else {
                   x.style.display = "none";
                   y.style.transform = "rotate(90deg)";
+                  y.style.pointerEvents = "none"; // Disable pointer events on addBtn
                 }
               }
               
