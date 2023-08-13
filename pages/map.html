@@ -158,49 +158,62 @@
       <div class="row">
         
       
-      <div class="row mt-0">
-
-        <div class="col-lg-12" style="height: 500%;">
-          <div class="card card-carousel overflow-hidden h-100 p-0 card z-index-5 h-100 mb-6">
-            <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
-              <div class="carousel-inner border-radius-lg h-100">
-                <div class="carousel-item h-100 active" style="background-image: url('../assets/img/SK01.jpg');
-                      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class=" text-center border-radius-md mb-3">
-                    
+        <div class="row mt-0">
+          <div class="col-lg-12">
+            <div class="card card-carousel overflow-hidden h-100 p-0 card z-index-5 h-100 mb-6">
+              <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
+                <div class="carousel-inner border-radius-lg h-100">
+                  <div class="carousel-item h-100 active">
+                    <img src="../assets/img/SK01.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Slide 1">
+                    <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                      <div class="text-center border-radius-md mb-3">
+                        <!-- ... Your content for slide 1 ... -->
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div class="carousel-item h-100">
+                    <img src="../assets/img/SK001.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Slide 2">
+                    <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                      <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                        <i class="ni ni-bulb-61 text-dark opacity-10"></i>
+                      </div>
+                      <h5 class="text-white mb-1">Faster way to create web pages</h5>
+                      <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
                     </div>
                   </div>
                 </div>
-
-          
-                <div class="carousel-item h-100" style="background-image: url('../assets/img/SK001.jpg');
-                    background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                    <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
-                  </div>
-                </div>
-
-                
+        
+                <button class="carousel-control-prev w-4 me-4" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev" style="background-color: gray;">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <br>
+                <button class="carousel-control-next w-4 me-1" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next" style="background-color: gray;">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               </div>
-
-              <button class="carousel-control-prev w-5 me-4" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev" style="background-color: gray;">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <br>
-              <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next" style="background-color: gray;">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
             </div>
           </div>
-    
-  
+        </div>
+        
+
+        <style>
+          /* Define image dimensions and zoom out the images */
+          /* Define image dimensions and make them fit the container */
+          .object-fit-cover {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+
+          /* Set the carousel height to match the desired size */
+          .carousel-inner {
+            height: 350px; /* Set the height as needed */
+          }
+
+        </style>
 
 
 

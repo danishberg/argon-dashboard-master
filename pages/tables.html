@@ -228,6 +228,207 @@
           }-->
         <!----------------------------------------------Script Part Start---------------------------------------------->
             <script>
+              var data = [
+              
+              {
+                eventName: "Tam Long Ting",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-05",
+              },
+              {
+                eventName: "Wong Wa Pan",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-01",
+              },
+              {
+                eventName: "Au Cheuk Yu",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-01",
+              },
+              {
+                eventName: "薛寳強",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-05",
+              },
+              {
+                eventName: "Fan Tsz Ngai",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-05",
+              },
+              {
+                eventName: "岑嘉皓",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-06",
+              },
+              {
+                eventName: "Sun Man Cham",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-12",
+              },
+              {
+                eventName: "何國華",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-12",
+              },
+              {
+                eventName: "Li Ying Wai Nick",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-12",
+              },
+              {
+                eventName: "Leung Nga Lun",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-06-12",
+              },
+
+              {
+                eventName: "Law Hoi Kin",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-11",
+              },
+              {
+                eventName: "Poon Yik Hei",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-12",
+              },
+              {
+                eventName: "Wu Yi Ho",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-13",
+              },
+              {
+                eventName: "Kwok Shu Kai",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-14",
+              },
+              {
+                eventName: "Chan Shu Kai",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-15",
+              },
+              {
+                eventName: "Chu Wai Lun",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-16",
+              },
+              {
+                eventName: "Leung Wing Yin",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-17",
+              },
+              {
+                eventName: "Lau Tsz Kiu",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-18",
+              },
+              {
+                eventName: "Matthew Yan",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-19",
+              },
+              {
+                eventName: "Cecilia Tsui",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-20",
+              },
+
+              {
+                eventName: "Katherine Wu",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-23",
+              },
+              {
+                eventName: "Derek Li",
+                calendar: "Event",
+                color: "rgba(156, 202, 235, 1)",
+                date: "2023-07-20",
+              },
+              
+            ];
+          
+            // Replace the placeholders "XX" with the correct dates in YYYY-MM-DD format
+            var currentDate = new Date();
+            for (var i = 0; i < data.length; i++) {
+              if (data[i].date.includes("XX")) {
+                var year = currentDate.getFullYear();
+                var month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+                var day = (currentDate.getDate() + i).toString().padStart(2, "0");
+                data[i].date = `${year}-${month}-${day}`;
+              }
+            }
+          
+            // Function to add an event to the data array
+            function addEvent(eventName, calendar, color, date) {
+              data.push({
+                eventName: eventName,
+                calendar: calendar,
+                color: color,
+                date: date,
+              });
+              localStorage.setItem("data", JSON.stringify(data));
+            }
+          
+            // Add the "today" event for 2023-07-25
+            addEvent("today", "Event", "rgba(156, 202, 235, 1)", "2023-07-25");
+          
+            // Rest of the script (Calendar constructor, functions, etc.)...
+           
+            // Rest of the script (Calendar constructor, functions, etc.)...
+            function drawEvents(day, element) {
+              if (day.month() === this.current.month()) {
+                var todaysEvents = this.events.reduce(function (memo, ev) {
+                  if (ev.date.isSame(day, "day")) {
+                    memo.push(ev);
+                  }
+                  return memo;
+                }, []);
+          
+                // Clear previous events before drawing new ones
+                element.innerHTML = "";
+          
+                todaysEvents.forEach(function (ev) {
+                  var evSpan = createElement("span", "event-marker", "", ev.color);
+                  element.appendChild(evSpan);
+                });
+              }
+            }
+          
+            function createElement(tagName, className, innerText, color) {
+              var ele = document.createElement(tagName);
+              if (className) {
+                ele.className = className;
+              }
+              if (innerText) {
+                ele.innerText = ele.textContent = innerText;
+              }
+              if (color) {
+                ele.style.backgroundColor = color;
+              }
+              return ele;
+            }
+
+            /////////////////////////////////////////////////////
 
               window.document.onload = myFunc();
 
@@ -669,16 +870,17 @@
               
                 window.Calendar = Calendar;
               
-                function createElement(tagName, className, innerText) {
+                function createElement(tagName, className, innerText, color) {
                   var ele = document.createElement(tagName);
                   if (className) {
                     ele.className = className;
                   }
-              
                   if (innerText) {
-                    ele.innderText = ele.textContent = innerText;
+                    ele.innerText = ele.textContent = innerText;
                   }
-               
+                  if (color) {
+                    ele.style.backgroundColor = color;
+                  }
                   return ele;
                 }
                 
